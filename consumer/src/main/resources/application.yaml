@@ -1,0 +1,25 @@
+server:
+  port: 0
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: 1001
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  datasource:
+    url: jdbc:mysql://localhost:3306/course-db?useSSL=false
+    username: course-db-user
+    password: 12345678
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+
+  application:
+    config:
+      path:
+        csv: C://Users/ADITYA/Desktop/operation.csv
+        xlsx: C://Users/ADITYA/Desktop/operation.xlsx
