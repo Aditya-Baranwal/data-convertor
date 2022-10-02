@@ -1,7 +1,13 @@
 package com.dataconvertor.consumer;
 
 import com.dataconvertor.common.enums.Operation;
-import com.dataconvertor.consumer.impl.*;
+import com.dataconvertor.consumer.impl.processor.AddProcess;
+import com.dataconvertor.consumer.impl.processor.DivideProcess;
+import com.dataconvertor.consumer.impl.processor.MultiplyProcess;
+import com.dataconvertor.consumer.impl.processor.SubProcess;
+import com.dataconvertor.consumer.impl.writer.CSVWriter;
+import com.dataconvertor.consumer.impl.writer.DBWriter;
+import com.dataconvertor.consumer.impl.writer.XLSXWriter;
 import com.dataconvertor.consumer.interfaces.DataProcessor;
 import com.dataconvertor.consumer.interfaces.DataWriter;
 import com.dataconvertor.common.enums.Destination;

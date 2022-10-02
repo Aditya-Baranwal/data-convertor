@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -23,6 +24,7 @@ public class MessageDao {
     private Operation operation;
     private int number1;
     private int number2;
+    private String message_id;
     @Enumerated(EnumType.STRING)
     @Column(name="destination")
     private Destination destination;
@@ -42,6 +44,7 @@ public class MessageDao {
         this.number1 = number1;
         this.number2 = number2;
         this.destination = destination;
+        this.message_id = UUID.randomUUID().toString();
     }
 
     @PrePersist

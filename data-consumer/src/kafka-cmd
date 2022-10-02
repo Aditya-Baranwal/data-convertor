@@ -31,3 +31,6 @@
 https://reflectoring.io/spring-boot-kafka/
 kafka-with-replication.
 https://betterprogramming.pub/kafka-docker-run-multiple-kafka-brokers-and-zookeeper-services-in-docker-3ab287056fd5
+
+
+ mvn spring-boot:run -pl data-producer -D server.port=9090

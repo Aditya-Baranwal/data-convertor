@@ -1,4 +1,4 @@
-package com.dataconvertor.consumer.impl;
+package com.dataconvertor.consumer.impl.writer;
 
 import com.dataconvertor.consumer.dao.OperationDao;
 import com.dataconvertor.consumer.interfaces.DataWriter;

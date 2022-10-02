@@ -17,9 +17,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-
-  application:
-    config:
-      path:
-        csv: C://Users/ADITYA/Desktop/operation.csv
-        xlsx: C://Users/ADITYA/Desktop/operation.xlsx
+  config:
+    path:
+      csv: C:/Users/ADITYA/OneDrive/Desktop/operation.csv
+      xlsx: C:/Users/ADITYA/OneDrive/Desktop/operation.xlsx

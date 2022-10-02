@@ -1,4 +1,4 @@
-package com.dataconvertor.consumer.impl;
+package com.dataconvertor.consumer.impl.processor;
 
 import com.dataconvertor.consumer.interfaces.DataProcessor;
 import org.springframework.stereotype.Component;

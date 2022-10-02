@@ -1,4 +1,4 @@
-package com.dataconvertor.consumer.impl;
+package com.dataconvertor.consumer.impl.writer;
 
 import com.dataconvertor.consumer.interfaces.DataWriter;
 import com.dataconvertor.consumer.dao.OperationDao;
@@ -6,7 +6,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -14,11 +16,12 @@ import java.io.*;
 @Component
 public class XLSXWriter implements DataWriter {
 
-    @Value("${application.config.path.xlsx}")
+    @Value("${spring.config.path.xlsx}")
     String filePath;
 
     @Override
     public void write(OperationDao operationResult) {
+
         try {
             File excelFile  = new File(filePath);
             FileInputStream fis = new FileInputStream(excelFile);

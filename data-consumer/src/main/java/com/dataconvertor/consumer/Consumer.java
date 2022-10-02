@@ -32,7 +32,14 @@ public class Consumer {
         MessageDao receviedMessage = new Gson().fromJson(message, MessageDao.class);
 
         // process
-        OperationDao operationDetail = new OperationDao(receviedMessage.getNumber1(), receviedMessage.getNumber2(), receviedMessage.getOperation(),appConfiguration.getOperationProcessorConfig().get(receviedMessage.getOperation()).process(receviedMessage.getNumber1(), receviedMessage.getNumber2()));
+        OperationDao operationDetail = new OperationDao(
+                receviedMessage.getNumber1(),
+                receviedMessage.getNumber2(),
+                receviedMessage.getOperation(),
+                receviedMessage.getMessage_id(),
+                appConfiguration.getOperationProcessorConfig().get(receviedMessage.getOperation()).process(receviedMessage.getNumber1(), receviedMessage.getNumber2())
+        );
+
         // write details
         appConfiguration.getDestinationWriterConfig().get(receviedMessage.getDestination()).write(operationDetail);
 

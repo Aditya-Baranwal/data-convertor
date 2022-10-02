@@ -37,7 +37,7 @@ public class Application {
 			ObjectMapper objectMapper = new ObjectMapper();
 			producer.sendMessage(objectMapper.writeValueAsString(message));
 			messageRepository.save(message);
-			sleep(10);
+			sleep(10000);
 		}
 	}
 

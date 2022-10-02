@@ -1,7 +1,7 @@
 package com.dataconvertor.common.enums;
 
- public enum Destination {
+public enum Destination {
     DB,
     XLSX,
     CSV
- }
+}

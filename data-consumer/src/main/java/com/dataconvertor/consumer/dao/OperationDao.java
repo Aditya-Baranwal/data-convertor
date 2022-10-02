@@ -25,6 +25,7 @@ public class OperationDao {
     Integer id;
     Integer number1;
     Integer number2;
+    String message_id;
     @Enumerated(EnumType.STRING)
     @Column(name="operation")
     private Operation operation;
@@ -40,11 +41,12 @@ public class OperationDao {
     @Column(name = "modify_date", nullable = false)
     private Date modifyDate;
 
-    public OperationDao(Integer number1, Integer number2, Operation operation, Integer result) {
+    public OperationDao(Integer number1, Integer number2, Operation operation, String messageId, Integer result) {
         this.number1 = number1;
         this.number2 = number2;
         this.operation = operation;
         this.result = result;
+        this.message_id = messageId;
     }
 
     @PrePersist

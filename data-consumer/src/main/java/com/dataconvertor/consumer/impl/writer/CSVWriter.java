@@ -1,26 +1,26 @@
-package com.dataconvertor.consumer.impl;
+package com.dataconvertor.consumer.impl.writer;
 
+import com.dataconvertor.consumer.dao.OperationDao;
 import com.dataconvertor.consumer.interfaces.DataWriter;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.dataconvertor.consumer.dao.OperationDao;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 
 @Component
 public class CSVWriter implements DataWriter {
 
-    @Value("${application.config.path.csv}")
-    Path filePath;
+    @Value("${spring.config.path.csv}")
+    String filePath;
 
     @Override
     public void write(OperationDao operationResult) {
-        try (FileOutputStream fos = new FileOutputStream(filePath.toString(), true)){
+        try (FileOutputStream fos = new FileOutputStream(filePath, true)) {
             // mapper will map pojo according to json.
             CsvMapper mapper = new CsvMapper();
             mapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
