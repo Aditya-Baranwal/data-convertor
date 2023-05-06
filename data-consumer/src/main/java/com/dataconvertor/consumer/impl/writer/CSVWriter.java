@@ -9,6 +9,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -20,6 +21,18 @@ public class CSVWriter implements DataWriter {
 
     @Override
     public void write(OperationDao operationResult) {
+
+        File operationFile = new File(filePath);
+        if(!operationFile.exists()) {
+            try {
+                operationFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+
+
         try (FileOutputStream fos = new FileOutputStream(filePath, true)) {
             // mapper will map pojo according to json.
             CsvMapper mapper = new CsvMapper();
@@ -33,6 +46,7 @@ public class CSVWriter implements DataWriter {
             writer.writeValues(fos).write(operationResult);
         } catch (IOException fe) {
             fe.printStackTrace();
+            throw new RuntimeException(fe);
         }
     }
 }

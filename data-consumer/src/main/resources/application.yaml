@@ -10,8 +10,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   datasource:
-    url: jdbc:mysql://localhost:3306/course-db?useSSL=false
-    username: course-db-user
+    url: jdbc:mysql://localhost:3306/data-convertor-db?useSSL=false
+    username: data-convertor-db-user
     password: 12345678
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -19,5 +19,5 @@ spring:
       ddl-auto: update
   config:
     path:
-      csv: C:/Users/ADITYA/OneDrive/Desktop/operation.csv
-      xlsx: C:/Users/ADITYA/OneDrive/Desktop/operation.xlsx
+      csv: /home/aditya/Desktop/operation.csv
+      xlsx: /home/aditya/Desktop/operation.xlsx

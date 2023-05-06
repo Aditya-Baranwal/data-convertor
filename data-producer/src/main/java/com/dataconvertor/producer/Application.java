@@ -33,7 +33,12 @@ public class Application {
 	public void pushEventsToKafka() throws InterruptedException, JsonProcessingException {
 		 Producer producer = context.getBean(Producer.class);
 		while (true) {
-			MessageDao message = new MessageDao(Operation.values()[this.generateRandomNumber(0,3)], this.generateRandomNumber(0, 100), this.generateRandomNumber(101, 200), Destination.values()[this.generateRandomNumber(0,2)]);
+			Operation operationToBePerformed = Operation.values()[this.generateRandomNumber(0,3)];
+			Destination resultTobeSavedAt = Destination.values()[this.generateRandomNumber(0,2)];
+			MessageDao message = new MessageDao(operationToBePerformed,
+					this.generateRandomNumber(0, 100),
+					this.generateRandomNumber(101, 200),
+					resultTobeSavedAt);
 			ObjectMapper objectMapper = new ObjectMapper();
 			producer.sendMessage(objectMapper.writeValueAsString(message));
 			messageRepository.save(message);

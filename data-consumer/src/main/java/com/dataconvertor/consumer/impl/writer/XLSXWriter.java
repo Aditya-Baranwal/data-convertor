@@ -21,15 +21,28 @@ public class XLSXWriter implements DataWriter {
 
     @Override
     public void write(OperationDao operationResult) {
-
         try {
-            File excelFile  = new File(filePath);
-            FileInputStream fis = new FileInputStream(excelFile);
-
-            // create xlxs work book
-            XSSFWorkbook book = new XSSFWorkbook(fis);
-            XSSFSheet sheet = book.getSheetAt(0);
-
+            File excelFile = new File(filePath);
+            XSSFWorkbook wb;
+            XSSFSheet sheet;
+            if(!excelFile.exists())  {
+                wb = new XSSFWorkbook();
+                OutputStream fileOut = new FileOutputStream("operations.xlsx");
+                sheet = wb.createSheet("operation-output");
+                String[] headers = new String[] { "Number-1", "Number-2", "Operation", "Result" };
+                Row r = sheet.createRow(0);
+                for (int cn=0; cn<headers.length; cn++) {
+                    r.createCell(cn).setCellValue(headers[cn]);
+                }
+                wb.write(fileOut);
+                fileOut.close();
+                System.out.println("operation excel sheet not found, excel sheet has been created successfully");
+            } else {
+                FileInputStream fileIn = new FileInputStream(excelFile);
+                wb = new XSSFWorkbook(fileIn);
+                sheet = wb.getSheetAt(0);
+                fileIn.close();
+            }
             // write to sheet
             int rowNumber = sheet.getLastRowNum();
             Row row = sheet.createRow(++rowNumber);
@@ -45,10 +58,9 @@ public class XLSXWriter implements DataWriter {
             }
 
             FileOutputStream fos = new FileOutputStream(excelFile);
-            book.write(fos);
-            book.close();
+            wb.write(fos);
+            wb.close();
             fos.close();
-            fis.close();
         } catch (IOException fe) {
             fe.printStackTrace();
         }
