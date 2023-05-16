@@ -80,10 +80,14 @@ services:
    environment:
      spring.datasource.url: jdbc:mysql://mysql-db:3306/data-convertor-db
      spring.kafka.consumer.bootstrap-servers: kafka:9092
+     spring.config.path.csv: /var/data-convertor/operation.csv
+     spring.config.path.xlsx: /var/data-convertor/operation.xlsx
    ports:
     - '9011-9015:9000'
    expose:
      - '9011'
+   volumes:
+    - storage-volume:/var/data-convertor
    depends_on:
      - mysql-db
      - kafka
@@ -92,6 +96,7 @@ services:
 # Names our volume
 volumes:
   data-convertor-db:
+  storage-volume:
 networks:
   data-convertor-network:
     driver: bridge
