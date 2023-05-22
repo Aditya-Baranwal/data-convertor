@@ -2,21 +2,16 @@ package com.dataconvertor.consumer.impl.writer;
 
 import com.dataconvertor.consumer.interfaces.DataWriter;
 import com.dataconvertor.consumer.dao.OperationDao;
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -28,6 +23,7 @@ public class XLSXWriter implements DataWriter {
     public XLSXWriter() {
         this.jsonObjectMapper = new ObjectMapper();
     }
+
     @Value("${spring.config.path.xlsx}")
     String filePath;
 
@@ -39,7 +35,6 @@ public class XLSXWriter implements DataWriter {
             XSSFSheet sheet;
             if(!excelFile.exists())  {
                 wb = new XSSFWorkbook();
-//                OutputStream fileOut = new FileOutputStream("operations.xlsx");
                 OutputStream fileOut = new FileOutputStream(filePath);
                 sheet = wb.createSheet("sheet-1");
                 JsonNode jsonObject = this.jsonObjectMapper.valueToTree(operationResult);
