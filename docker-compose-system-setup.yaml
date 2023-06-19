@@ -3,8 +3,6 @@ services:
   zookeeper:
     image: 'bitnami/zookeeper:latest'
     container_name: zookeeper
-#    ports:
-#      - '2181:2181'
     expose:
       - '2181'
     environment:
@@ -14,7 +12,7 @@ services:
       - data-convertor-network
   kafka:
     image: 'bitnami/kafka:latest'
-    container_name: kakfa-data-convertor
+    container_name: kakfa-cluster-data-convertor
     ports:
      - '9092:9092'
     expose:
@@ -22,36 +20,34 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-#      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
-#      - KAFKA_LISTENERS=PLAINTEXT://:9092
-#      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP:LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       - KAFKA_ADVERTISED_LISTENERS:LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://localhost:9092
       - KAFKA_LISTENERS:LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://localhost:9092
       - KAFKA_INTER_BROKER_LISTENER_NAME:LISTENER_DOCKER_EXTERNAL
-#      - KAFKA_CREATE_TOPICS:"orders:1:1"
+    command: >
+      sh -c "echo 'Hi-Hi' && cd ./opt/bitnami/kafka/bin && echo 'bye-bye' && pwd && sleep 15 && ./kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic operation-topic && ./kafka-topics.sh --create --topic operation-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 && echo 'Hi-bye'"
+#    command: >
+#      sh -c "cd ./opt/bitnami/kafka/bin & echo "Hi-Hi""
     networks:
       - data-convertor-network
     depends_on:
       - zookeeper
   mysql-db:
     image: mysql:5.7
-    container_name: mysql-data-convertor-db
+    container_name: mysql-db-data-convertor
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=data-convertor-db
       - MYSQL_USER=data-convertor-db-user
       - MYSQL_PASSWORD=12345678
-#    ports:
-#      - '3306:3306'
     networks:
       - data-convertor-network
     expose:
      - '3306'
     volumes:
-      - data-convertor-db:/var/lib/mysql
+      - data-convertor-db-volume:/var/lib/mysql
   data-producer:
     build:
       # path where docker file has to be present
@@ -65,8 +61,6 @@ services:
       spring.kafka.producer.bootstrap-servers: kafka:9092
     ports:
       - '9001-9010:9000'
-    expose:
-      - '9001'
     depends_on:
       - mysql-db
       - kafka
@@ -84,8 +78,6 @@ services:
      spring.config.path.xlsx: /var/data-convertor/operation.xlsx
    ports:
     - '9011-9015:9000'
-   expose:
-     - '9011'
    volumes:
     - storage-volume:/var/data-convertor
    depends_on:
@@ -95,7 +87,7 @@ services:
     - data-convertor-network
 # Names our volume
 volumes:
-  data-convertor-db:
+  data-convertor-db-volume:
   storage-volume:
 networks:
   data-convertor-network:

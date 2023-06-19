@@ -43,3 +43,5 @@
 https://reflectoring.io/spring-boot-kafka/
 kafka-with-replication.
 https://betterprogramming.pub/kafka-docker-run-multiple-kafka-brokers-and-zookeeper-services-in-docker-3ab287056fd5
+
+docker-compose up -d --scale app=5
