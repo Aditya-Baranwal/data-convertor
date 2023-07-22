@@ -25,10 +25,6 @@ services:
       - KAFKA_ADVERTISED_LISTENERS:LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://localhost:9092
       - KAFKA_LISTENERS:LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://localhost:9092
       - KAFKA_INTER_BROKER_LISTENER_NAME:LISTENER_DOCKER_EXTERNAL
-    command: >
-      sh -c "echo 'Hi-Hi' && cd ./opt/bitnami/kafka/bin && echo 'bye-bye' && pwd && sleep 15 && ./kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic operation-topic && ./kafka-topics.sh --create --topic operation-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 5 && echo 'Hi-bye'"
-#    command: >
-#      sh -c "cd ./opt/bitnami/kafka/bin & echo "Hi-Hi""
     networks:
       - data-convertor-network
     depends_on:
