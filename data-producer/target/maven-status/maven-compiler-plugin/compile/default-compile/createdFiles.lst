@@ -1,4 +1,5 @@
-com/dataconvertor/producer/Producer.class
 com/dataconvertor/producer/dao/MessageDao.class
+com/dataconvertor/producer/Producer.class
 com/dataconvertor/producer/repository/MessageRepository.class
 com/dataconvertor/producer/Application.class
+com/dataconvertor/producer/KafkaTopicConfiguration.class

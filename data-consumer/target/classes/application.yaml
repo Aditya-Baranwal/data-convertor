@@ -1,5 +1,9 @@
 server:
-  port: 0
+  port: 9000
+
+kafka-topic:
+  topic-1:
+    name: operation-topic
 
 spring:
   kafka:

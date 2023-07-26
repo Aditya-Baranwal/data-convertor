@@ -12,5 +12,6 @@
 /home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/impl/processor/SubProcess.java
 /home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/impl/processor/MultiplyProcess.java
 /home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/ApplicationConfiguration.java
+/home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/KafkaTopicConfiguration.java
 /home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/dao/OperationDao.java
 /home/aditya/IdeaProjects/data-convertor/data-consumer/src/main/java/com/dataconvertor/consumer/interfaces/DataWriter.java

@@ -1,4 +1,5 @@
 /home/aditya/IdeaProjects/data-convertor/data-producer/src/main/java/com/dataconvertor/producer/repository/MessageRepository.java
 /home/aditya/IdeaProjects/data-convertor/data-producer/src/main/java/com/dataconvertor/producer/dao/MessageDao.java
 /home/aditya/IdeaProjects/data-convertor/data-producer/src/main/java/com/dataconvertor/producer/Application.java
+/home/aditya/IdeaProjects/data-convertor/data-producer/src/main/java/com/dataconvertor/producer/KafkaTopicConfiguration.java
 /home/aditya/IdeaProjects/data-convertor/data-producer/src/main/java/com/dataconvertor/producer/Producer.java

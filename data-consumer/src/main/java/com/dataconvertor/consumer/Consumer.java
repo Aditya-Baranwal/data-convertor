@@ -8,14 +8,19 @@ import com.dataconvertor.consumer.dao.OperationDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class Consumer {
 
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
-    private static final String TOPIC = "operation-topic";
+
+    @Value("${kafka-topic.topic-1.name}")
+    private final String TOPIC = "operation-topic";
 
     @Autowired
     MessageRepository messageRepository;
@@ -27,7 +32,7 @@ public class Consumer {
     ApplicationConfiguration appConfiguration;
 
     @KafkaListener(topics = TOPIC, groupId = "1001")
-    public void consume(String message) {
+    public void consume(String message) throws IOException {
         logger.info(String.format("$$$ -> Consumed Message -> %s",message));
         MessageDao receviedMessage = new Gson().fromJson(message, MessageDao.class);
 

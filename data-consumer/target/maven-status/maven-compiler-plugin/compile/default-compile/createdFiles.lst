@@ -11,6 +11,7 @@ com/dataconvertor/consumer/repository/MessageRepository.class
 com/dataconvertor/consumer/impl/processor/MultiplyProcess.class
 com/dataconvertor/consumer/impl/writer/CSVWriter.class
 com/dataconvertor/consumer/impl/writer/DBWriter.class
+com/dataconvertor/consumer/KafkaTopicConfiguration.class
 com/dataconvertor/consumer/Application.class
 com/dataconvertor/consumer/impl/processor/DivideProcess.class
 com/dataconvertor/consumer/impl/writer/XLSXWriter.class
