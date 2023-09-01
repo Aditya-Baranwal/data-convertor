@@ -28,7 +28,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// producing message at rate of 500 message per second.
+	// producing message at rate of 100 message per second.
 	@EventListener(ApplicationReadyEvent.class)
 	public void pushEventsToKafka() throws InterruptedException, JsonProcessingException {
 		 Producer producer = context.getBean(Producer.class);
@@ -42,7 +42,7 @@ public class Application {
 			ObjectMapper objectMapper = new ObjectMapper();
 			producer.sendMessage(objectMapper.writeValueAsString(message));
 			messageRepository.save(message);
-			sleep(10000);
+			sleep(10);
 		}
 	}
 

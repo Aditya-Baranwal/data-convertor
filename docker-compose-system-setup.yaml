@@ -53,6 +53,8 @@ services:
       dockerfile: Dockerfile
     # name for newly build image, with tag latest
     image: data-producer:latest
+    deploy:
+      replicas: 5
     environment:
       spring.datasource.url: jdbc:mysql://mysql-db:3306/data-convertor-db
       spring.kafka.bootstrap-servers: kafka:9092
@@ -72,6 +74,8 @@ services:
      context: data-consumer
      dockerfile: Dockerfile
    image: data-consumer:latest
+   deploy:
+     replicas: 3
    environment:
      spring.datasource.url: jdbc:mysql://mysql-db:3306/data-convertor-db
      spring.kafka.bootstrap-servers: kafka:9092

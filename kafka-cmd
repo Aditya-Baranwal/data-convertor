@@ -1,4 +1,4 @@
--- run this command in bin folder of kafka
+-- run this command in bin(/opt/bitnami/kafka/bin) folder of kafka
 
 -- topic list
 ./kafka-topics.bat --bootstrap-server localhost:9092 --list
@@ -27,7 +27,6 @@
 ./kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group 1001 --describe
 ./kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group 1001 --describe
 
-
 -- create and subcribe(show messages) for particular topic,group
 ./kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic operation-topic --group 1001
 ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic operation-topic --group 1001
@@ -39,9 +38,9 @@
 ./zookeeper-shell.sh localhost:2181 ls /brokers/ids
 ./zookeeper-shell.sh zookeeper:2181 ls /brokers/ids
 
-
+1) kafka-with-spring-boot
 https://reflectoring.io/spring-boot-kafka/
-kafka-with-replication.
+2) kafka-with-replication.
 https://betterprogramming.pub/kafka-docker-run-multiple-kafka-brokers-and-zookeeper-services-in-docker-3ab287056fd5
-
-docker-compose up -d --scale app=5
+3) command to scale producers, consumers for docker-compose
+docker-compose up -d --scale data-producer=5 --scale data-consumer=3
