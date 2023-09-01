@@ -5,3 +5,7 @@ system is completly containerized using docker, docker-compose.
 
 ## Architecture Diagram
 ![data-convertor](https://github.com/Aditya-Baranwal/data-convertor/assets/53208035/61f10be4-298f-4c3e-b706-7d9a87984b26)
+
+## How to start ?
+1) install docker, docker-compose.
+2) run `run.docker.sh` shell script in scripts folder.
