@@ -3,7 +3,9 @@ server:
 
 kafka-topic:
   topic-1:
-    name: operation-topic
+    name: 'operation-topic'
+    partition: 5
+    replication-factor: 1
 
 spring:
   kafka:
